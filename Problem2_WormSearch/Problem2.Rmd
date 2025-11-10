@@ -1,0 +1,69 @@
+---
+title: 'Problem 2: "WORM" Search'
+author: "Grant Foster"
+date: "2025-11-10"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+
+You successfully helped the Nematode Observation Division debug the WIGGLE system, but before you get a chance to settle into your new lumbar-supported office chair you feel a tap on your shoulder. The chief of the trematode monitoring program sheepishly asks, since you did so well with the WIGGLE system, if you'd help try making sense of outputs of their new Global Unit for Trematode Surveillance (GUTS). 
+
+The technicians on duty explain that the unit's pattented universal pattern detector has become fascinated with a peculiar word search generated from tematode genomic signal noise. It insists that the key pattern hidden within the data is the word **WORM**. We want to take it's large output of readings, and find the number of times this word appears in them. 
+
+This particular word search is flexible: words may appear horizontally, vertically, or diagonally, written backwards, or even overlapping other words. The program's challenge is to count *all* occurrences of WORM in every direction.
+
+Here are a few illustrative examples of how WORM might appear (non-relevant letters replaced with dots):
+
+..W... \
+.MROW. \
+.R..R. \
+WORM.M \
+.W.... \
+
+
+The actual word search will be full of letters, like so.
+
+OOOMWWORMO
+OMROWOMOMR
+ROWMWORROO
+OMRORMOMOW
+WORMROWROO
+WWROOWWROR
+MOMOMRMWMM
+MRWRORMRRR
+OROOOWOOOO
+OWOWRWORMW
+
+In this word search, WORM occurs a total of 18 times; here's the same word search again, but where letters not involved in any WORD have been replaced with a dot. 
+
+....WWORM.
+.MROWOM...
+...M..R...
+..R.R.OM.W
+WORMROW.OO
+W.....WR.R
+M.M.M.M.MM
+.R.R.R.R.R
+..O.O.O.OO
+.W.W.WORMW
+
+Take a look at the pattern detector’s word search. How many times does **WORM** appear?
+
+Notes: \
+- Words may appear horizontally, vertically, or diagonally, in either direction. \
+- Overlaps are allowed; each distinct position sequence counts separately. \
+- The puzzle input will be composed entirely of uppercase letters. \
+
+Your puzzle input is loaded in below as a matrix. 
+```{r}
+load(file="input.RDA")
+```
+
+Adapted from: https://adventofcode.com/2024/day/4

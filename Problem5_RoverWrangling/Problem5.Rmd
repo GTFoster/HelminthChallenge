@@ -1,0 +1,77 @@
+---
+title: "Rover Wrangling"
+author: "Grant Foster"
+date: "2025-11-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+With the field-trailer cleaned out and the SQUIRM unit loaded up, the field crew leader has asked you to come along on their first deployment. The team has been tasked with using the highly-advanced SQUIRM unit to map helminth abundance across a semi-rural test landscape. Soon after the test begins however the chief engineer and rover's deployment technicians become distracted by a heated discussion of the semantics of the whether viruses should count as a "parasite." While they're distracted, the SQUIRM unit has begun an automated patrol across a mapped area and you need to predict its route.  
+
+The unit is represented in the map by one of the directional symbols ^ v < > indicating its current facing direction from the perspective of the map.  Static obstructions—stone piles, experimental corrals, old irrigation rigs, and the like—are shown as #.  Empty ground is shown as a dot (.).
+
+Because the unit is designed to be conservative and avoid complex navigation logic, its patrol protocol is delightfully simple and deterministic.  Each patrol step follows this rule set:
+
+    1. If there is an obstruction immediately in front of the unit, it turns right 90°.
+    2. Otherwise, it takes a single step forward into the next cell.
+
+Your job is to predict which ground positions the SQUIRM unit will visit before it wanders off the mapped area (for example, by walking beyond the southern fence).  Include the unit's starting position in the set of visited positions.
+
+Example map (your puzzle input looks like this format):
+
+....#..... \
+.........# \
+.......... \
+..#....... \
+.......#.. \
+.......... \
+.#..^..... \
+........#. \
+#......... \
+......#... \
+
+This shows the rover starting at the '^' position (facing up).  Following the patrol protocol, the unit moves up until an obstacle blocks its path:
+
+....#..... \
+....^....# \
+.......... \
+..#....... \
+.......#.. \
+.......... \
+.#........ \
+........#. \
+#......... \
+......#... \
+
+At the obstacle it turns right and continues to follow the rules, eventually stepping off the mapped area.  If you mark every visited position with an X (including the starting cell), the traced patrol path looks like this:
+
+....#..... \
+....XXXXX# \
+....X...X. \
+..#.X...X. \
+..XXXXX#X. \
+..X.X.X.X. \
+.#XXXXXXX. \
+.XXXXXXX#. \
+#XXXXXXX.. \
+......#X.. \
+
+In this example the rover visits 41 distinct positions before leaving the mapped area.
+
+Your actual map is much larger than this example. Below, your starting map is loaded in as a matrix called "input".  USe it to predict the unit's path. How many **distinct positions** will the SQUIRM unit visit before it exits the mapped area?  Count the starting cell as visited.
+
+Good luck; and try not to get your boots too muddy as you follow the SQUIRM unit around.  The postdoc is sensitive about contamination.
+
+Hint: The rover starts pointing north at the position (91,92). 
+```{r}
+load("input.RDA")
+dim(mat)
+which(mat == "^", arr.ind = TRUE)
+```
+
+
+Adapted from https://adventofcode.com/2024/day/6
